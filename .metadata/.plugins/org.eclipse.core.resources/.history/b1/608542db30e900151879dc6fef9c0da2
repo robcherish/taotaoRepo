@@ -1,0 +1,15 @@
+package com.taotao.controller;
+
+@Controller
+public class ItemController {
+
+	@Autowired
+	private ItemService itemService;
+	
+	@RequestMapping("/item/{itemId}")
+	@ResponseBody
+	private TbItem getItemById(@PathVariable Long itemId) {
+		TbItem item = itemService.getItemById(itemId);
+		return item;
+	}
+}

@@ -1,0 +1,9 @@
+package com.taotao.service.impl;
+
+import com.taotao.pojo.TbItem;
+
+public class ItemService implements ItemService{
+		@override
+		public TbItem getItemById(long itemId);
+		
+}
