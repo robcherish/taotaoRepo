@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.mapper.TbItemMapper;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemExample;
@@ -30,6 +33,21 @@ public class ItemServiceImpl implements ItemService{
 			item = list.get(0);
 		}
 		return item;
+	}
+	@Override
+	public EasyUIDataGridResult getItemList(int page, int rows) {
+		// TODO Auto-generated method stub
+		//分页处理
+		PageHelper.startPage(page, rows);
+		//查询
+		TbItemExample example = new TbItemExample();
+		List<TbItem> list = itemMapper.selectByExample(example);
+		//获取分页信息
+		PageInfo<TbItem> pageInfo = new PageInfo<TbItem>(list);
+		EasyUIDataGridResult easyUIDataGridResult = new EasyUIDataGridResult();
+		easyUIDataGridResult.setTotal(pageInfo.getTotal());
+		easyUIDataGridResult.setRows(list);
+		return easyUIDataGridResult;
 	}
 
 

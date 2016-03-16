@@ -17,5 +17,7 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
+	<!-- static resource mapping **代表目录下的多级目录,mapping是请求的路径，location是查找的资源路径即资源映射-->
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
 </beans>
